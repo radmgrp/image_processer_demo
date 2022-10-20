@@ -1,7 +1,19 @@
 version: '3.7'
 
 services:
-
+  nginx:
+    container_name: nginx
+    working_dir: ./app
+    image: nginx:latest
+    hostname: recognizer-demo.inno.ws
+    command: [nginx-debug, '-g', 'daemon off;']
+    ports:
+      - '8000:8000'
+    volumes:
+      - './app/frontend/build:/usr/share/nginx/html'
+      - './nginx/conf.d:/etc/nginx/conf.d'
+    depends_on:
+      - backend
   backend:
     build: ./backend
     ports:
@@ -10,6 +22,6 @@ services:
       - ./backend:/app
     command: uvicorn main:app --reload --host 0.0.0.0 --port 5000
     environment:
-      - ALLOWED_ORIGINS=0.0.0.0:3000
+      - ALLOWED_ORIGINS=0.0.0.0:5000
 
 
