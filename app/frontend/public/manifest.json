@@ -1,0 +1,10 @@
+{
+  "short_name": "Image processing demo",
+  "name": "Image processing demo",
+  "icons": [
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
