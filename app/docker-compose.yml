@@ -1,16 +1,16 @@
 version: '3.7'
 
 services:
-  nginx:
-    container_name: nginx
-    working_dir: ./app
+  nginx-reco:
+    container_name: nginx-reco
+    working_dir: /app
     image: nginx:latest
     hostname: recognizer-demo.inno.ws
     command: [nginx-debug, '-g', 'daemon off;']
     ports:
       - '8000:8000'
     volumes:
-      - './app/frontend/build:/usr/share/nginx/html'
+      - './frontend/build:/usr/share/nginx/html'
       - './nginx/conf.d:/etc/nginx/conf.d'
     depends_on:
       - backend
